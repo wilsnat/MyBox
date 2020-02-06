@@ -129,33 +129,33 @@ namespace MyBox.Internal
 		private static async void CheckOnlineVersionAsync(bool withLog)
 		{
 			//TODO: Try Catch Exceptional
-			using (HttpClient wc = new HttpClient())
-			{
-				var packageJson = await wc.GetStringAsync(MyBoxPackageInfoURL);
-				_latestVersion = ParsePackageVersion(packageJson);
-				if (_windowInstance != null) _windowInstance.Repaint();
+			//using (HttpClient wc = new HttpClient())
+			//{
+			//	var packageJson = await wc.GetStringAsync(MyBoxPackageInfoURL);
+			//	_latestVersion = ParsePackageVersion(packageJson);
+			//	if (_windowInstance != null) _windowInstance.Repaint();
 
-				if (_currentVersion != _latestVersion && withLog)
-				{
-					Debug.Log("It's time to update MyBox :)! Use \"Tools/MyBox/Update window\". Current version: " + 
-					          _currentVersion + ", new version: " + _latestVersion);
-				}
-			}
+			//	if (_currentVersion != _latestVersion && withLog)
+			//	{
+			//		Debug.Log("It's time to update MyBox :)! Use \"Tools/MyBox/Update window\". Current version: " + 
+			//		          _currentVersion + ", new version: " + _latestVersion);
+			//	}
+			//}
 		}
 
 		private static void CheckCurrentVersion()
 		{
-			var scriptPath = MyEditor.GetScriptAssetPath(MyBoxUpdateWindowLocation.Instance);
-			var scriptDirectory = new DirectoryInfo(scriptPath);
+			//var scriptPath = MyEditor.GetScriptAssetPath(MyBoxUpdateWindowLocation.Instance);
+			//var scriptDirectory = new DirectoryInfo(scriptPath);
 
-			// Script is in MyBox/Tools/Internal so we need to get dir two steps up in hierarchy
-			if (scriptDirectory.Parent == null || scriptDirectory.Parent.Parent == null) return; //TODO: Exceptional
-			var myBoxDirectory = scriptDirectory.Parent.Parent;
+			//// Script is in MyBox/Tools/Internal so we need to get dir two steps up in hierarchy
+			//if (scriptDirectory.Parent == null || scriptDirectory.Parent.Parent == null) return; //TODO: Exceptional
+			//var myBoxDirectory = scriptDirectory.Parent.Parent;
 
-			var packageJson = myBoxDirectory.GetFiles().SingleOrDefault(f => f.Name == "package.json");
-			if (packageJson == null) return; //TODO: Exceptional
+			//var packageJson = myBoxDirectory.GetFiles().SingleOrDefault(f => f.Name == "package.json");
+			//if (packageJson == null) return; //TODO: Exceptional
 
-			_currentVersion = ParsePackageVersion(File.ReadAllText(packageJson.FullName));
+			//_currentVersion = ParsePackageVersion(File.ReadAllText(packageJson.FullName));
 		}
 
 		private static string ParsePackageVersion(string json)
